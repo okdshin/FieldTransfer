@@ -13,8 +13,11 @@ public:
 
 	Matrix(const std::array<Number, 2>& upper, const std::array<Number, 2>& lower):
 		Matrix(
-			Vector(upper.at(0), upper.at(1)), 
-			Vector(lower.at(0), lower.at(1))){}
+			//Vector(upper.at(0), upper.at(1)), 
+			//Vector(lower.at(0), lower.at(1))
+			Vector(upper[0], upper[1]), 
+			Vector(lower[0], lower[1])
+		){}
 
 	auto GetUpperVector()const -> Vector {
 		return upper;	

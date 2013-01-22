@@ -7,10 +7,15 @@ using namespace field_transfer;
 
 int main(int argc, char* argv[])
 {
+	std::cout << argc << std::endl;
+	if(argc < 4){
+		std::cout << "usage" << std::endl;
+		return 0;	
+	}
 	const auto vector_list_pair = 
 		CreateVectorListPairFromFile(
-			"sample_data/before.csv", 
-			"sample_data/after.csv");
+			argv[1], 
+			argv[2]);
 
 	const auto optimized = TernarySearch(
 		0, 2*M_PI, 
@@ -23,15 +28,16 @@ int main(int argc, char* argv[])
 	std::cout << "TranslateRoute:" << translated_route << std::endl;
 	std::cout << "OptimizedTheta:" << 360.0*(optimized/(2*M_PI)) << std::endl;
 
-	const auto raw_field = CreateField(532, 419, 1);
+	const auto raw_field = CreateField(532, 419, 1.0);
 	const auto transfered_field = 
 		TransferVectorList(raw_field, optimized, translated_route);
 	for(Index i = 0; i < transfered_field.Size(); ++i){
 		std::cout << transfered_field(i) << std::endl;
 	}
+	std::cout << "transfered" << std::endl;
 
-	std::ofstream field_file("result.csv");
-	OutputFieldFormat(transfered_field, field_file);
+	std::ofstream field_file(argv[3]);
+	OutputFieldFormat(raw_field, transfered_field, field_file);
 
     return 0;
 }

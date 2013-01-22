@@ -63,8 +63,8 @@ auto TernarySearch(Number min, Number max, Number delta, std::function<Number(Nu
 
 auto CreateField(Number width, Number height, Number edge_length) -> VectorList {
 	VectorList vector_list;
-	for(Number w; w < width; w+=edge_length){
-		for(Number h; h < height; h+=edge_length){
+	for(Number h = 0.0; h < height; h=h+edge_length){
+		for(Number w = 0.0; w < width; w=w+edge_length){
 			vector_list.PushBack(Vector(w, h));
 		}	
 	}	
@@ -76,10 +76,14 @@ auto TransferVectorList(
 		Number theta, 
 		const Vector& translate_route) -> VectorList {
 	auto transfered_list = VectorList();
+	std::cout << "size:" << vector_list.Size() << std::endl;
 	for(Index i = 0; i < vector_list.Size(); ++i){
+		if(i%static_cast<int>(vector_list.Size()/10) == 0){
+			std::cout << i << "," << std::flush;
+		}
 		transfered_list.PushBack(
 			Rotate(vector_list(i), GravityPoint(vector_list), theta)
-			+ translate_route);
+			+translate_route);
 	}
 	return transfered_list;
 }
