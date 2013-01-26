@@ -63,8 +63,8 @@ auto TernarySearch(Number min, Number max, Number delta, std::function<Number(Nu
 
 auto CreateField(Number width, Number height, Number edge_length) -> VectorList {
 	VectorList vector_list;
-	for(Number h = 0.0; h < height; h=h+edge_length){
-		for(Number w = 0.0; w < width; w=w+edge_length){
+	for(Number w = 0.0; w < width; w=w+edge_length){
+		for(Number h = 0.0; h < height; h=h+edge_length){
 			vector_list.PushBack(Vector(w, h));
 		}	
 	}	

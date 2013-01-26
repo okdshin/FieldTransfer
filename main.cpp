@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 
 	const auto optimized = TernarySearch(
 		0, 2*M_PI, 
-		2*M_PI/360000000, 
+		2*M_PI/1000, 
 		[&](Number theta)->Number {
 			return MakeMeMin(theta, vector_list_pair);
 		});
@@ -39,6 +39,8 @@ int main(int argc, char* argv[])
 	std::ofstream field_file(argv[3]);
 	OutputFieldFormat(raw_field, transfered_field, field_file);
 
+	std::ofstream field_file_inverted((std::string(argv[3])+"_inverted").c_str());
+	OutputFieldInvertedFormat(raw_field, transfered_field, field_file_inverted);
     return 0;
 }
 
