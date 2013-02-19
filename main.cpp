@@ -17,6 +17,8 @@ int main(int argc, char* argv[])
 			argv[1], 
 			argv[2]);
 
+	const unsigned int width = 532;
+	const unsigned int height = 419;
 	const auto optimized = TernarySearch(
 		0, 2*M_PI, 
 		2*M_PI/1000, 
@@ -37,10 +39,8 @@ int main(int argc, char* argv[])
 	std::cout << "transfered" << std::endl;
 
 	std::ofstream field_file(argv[3]);
-	OutputFieldFormat(raw_field, transfered_field, field_file);
+	OutputFieldFormat(width, height, raw_field, transfered_field, field_file);
 
-	std::ofstream field_file_inverted((std::string(argv[3])+"_inverted").c_str());
-	OutputFieldInvertedFormat(raw_field, transfered_field, field_file_inverted);
     return 0;
 }
 
