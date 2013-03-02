@@ -1,4 +1,4 @@
-CXX = g++ -std=gnu++0x
+CXX = g++ -std=gnu++0x -O3
 CXXFLAGS = -Wall -g -D FIELDTRANSFER_UNIT_TEST
 INCLUDES = 
 LIBS =

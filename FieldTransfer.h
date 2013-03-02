@@ -1,14 +1,11 @@
 #pragma once
-//FieldTransfer:20130110
+//FieldTransfer:20121220
 #include <iostream>
-#include "Formula.h"
-#include "Number.h"
-#include "Output.h"
-#include "Matrix.h"
-#include "Vector.h"
-#include "VectorList.h"
-#include "VectorListPair.h"
+
 namespace field_transfer
 {
+
+
+
 }
 
