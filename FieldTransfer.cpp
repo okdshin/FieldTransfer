@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 	
 	OutputVectorList(vector_list_pair.GetBeforeVectorList(), std::cout);
 	OutputVectorList(vector_list_pair.GetAfterVectorList(), std::cout);
-
+	std::cout << std::endl;
 	const unsigned int width = boost::lexical_cast<unsigned int>(argv[3]);
 	const unsigned int height = boost::lexical_cast<unsigned int>(argv[4]);
 	const auto optimized = TernarySearch(

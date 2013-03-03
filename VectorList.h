@@ -41,10 +41,12 @@ auto CreateVectorListFromFile(
 	while(ifs && getline(ifs, line)){
 		std::vector<std::string> item_list;
 		boost::regex_split(std::back_inserter(item_list), line, boost::regex("\\s+"));
+		/*
 		for(const auto str : item_list){
 			std::cout << str << std::endl;
 		}
 		std::cout << item_list.size() << std::endl;
+		*/
 		assert(x_col_index < item_list.size());
 		assert(y_col_index < item_list.size());
 		const Number x = boost::lexical_cast<Number>(item_list[x_col_index]);
