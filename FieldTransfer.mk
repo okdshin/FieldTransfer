@@ -1,7 +1,7 @@
 CXX = g++ -std=gnu++0x -O3
 CXXFLAGS = -Wall -g -D FIELDTRANSFER_UNIT_TEST
 INCLUDES = 
-LIBS =
+LIBS = -lboost_regex
 OBJS = FieldTransfer.o
 PROGRAM = FieldTransfer.out
 

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <boost/regex.hpp>
+#include <boost/lexical_cast.hpp>
 #include "Vector.h"
 #include "Index.h"
 
@@ -30,13 +32,26 @@ private:
 	std::vector<Vector> vector_vect;
 };
 
-auto CreateVectorListFromFile(const std::string& file_name) -> VectorList {
+auto CreateVectorListFromFile(
+		unsigned int x_col_index, unsigned int y_col_index,
+		const std::string& file_name) -> VectorList {
 	std::ifstream ifs(file_name.c_str());
 	VectorList vector_list;
-	Number x, y;
-	while(ifs >> x >> y){
+	std::string line;
+	while(ifs && getline(ifs, line)){
+		std::vector<std::string> item_list;
+		boost::regex_split(std::back_inserter(item_list), line, boost::regex("\\s+"));
+		for(const auto str : item_list){
+			std::cout << str << std::endl;
+		}
+		std::cout << item_list.size() << std::endl;
+		assert(x_col_index < item_list.size());
+		assert(y_col_index < item_list.size());
+		const Number x = boost::lexical_cast<Number>(item_list[x_col_index]);
+		const Number y = boost::lexical_cast<Number>(item_list[y_col_index]);
 		vector_list.PushBack(Vector(x, y));
 	}
+
 	return vector_list;
 }
 }
