@@ -8,7 +8,7 @@ using namespace field_transfer;
 
 int main(int argc, char* argv[])
 {
-	std::cout << argc << std::endl;
+	//std::cout << argc << std::endl;
 	if(argc < 6){
 		std::cout << "usage:<before> <after> <x_col_index> <y_col_index> <width> <height> <dst>" << std::endl;
 		return 0;	
@@ -40,9 +40,11 @@ int main(int argc, char* argv[])
 	const auto raw_field = CreateField(width, height, 1.0);
 	const auto transfered_field = 
 		TransferVectorList(raw_field, optimized, translated_route);
+	/*
 	for(Index i = 0; i < transfered_field.Size(); ++i){
 		std::cout << transfered_field(i) << std::endl;
 	}
+	*/
 	std::cout << "transfered" << std::endl;
 
 	std::ofstream field_file(argv[7]);
