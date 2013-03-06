@@ -6,6 +6,7 @@
 
 namespace field_transfer
 {
+/*
 auto OutputFieldInvertedFormat(
 		const VectorList& before_vector_list, 
 		const VectorList& after_vector_list, 
@@ -20,6 +21,7 @@ auto OutputFieldInvertedFormat(
 		<< std::endl;
 	}	
 }
+*/
 
 auto OutputFieldFormat(
 		unsigned int width, unsigned int height,
@@ -27,6 +29,7 @@ auto OutputFieldFormat(
 		const VectorList& normalized_vector_list, 
 		std::ostream& os) -> void {
 	assert(raw_vector_list.Size() == normalized_vector_list.Size());
+	
 	for(Index i = 0; i < raw_vector_list.Size(); ++i){
 		if(0 <= normalized_vector_list(i).X() 
 			&& normalized_vector_list(i).X() < width && 

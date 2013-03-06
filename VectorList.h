@@ -47,8 +47,9 @@ auto CreateVectorListFromFile(
 		}
 		std::cout << item_list.size() << std::endl;
 		*/
-		assert(x_col_index < item_list.size());
-		assert(y_col_index < item_list.size());
+		if(x_col_index >= item_list.size() || y_col_index >= item_list.size()){
+			throw "invalid x and y column index.";
+		}
 		const Number x = boost::lexical_cast<Number>(item_list[x_col_index]);
 		const Number y = boost::lexical_cast<Number>(item_list[y_col_index]);
 		vector_list.PushBack(Vector(x, y));
