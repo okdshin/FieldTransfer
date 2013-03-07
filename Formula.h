@@ -74,16 +74,15 @@ auto CreateField(Number width, Number height, Number edge_length) -> VectorList 
 auto TransferVectorList(
 		const VectorList& vector_list, 
 		Number theta, 
-		const Vector& translate_route) -> VectorList {
+		const Vector& translate_route,
+		std::function<void (unsigned int)> indicator) -> VectorList {
 	auto transfered_list = VectorList();
 	std::cout << "size:" << vector_list.Size() << std::endl;
 	for(Index i = 0; i < vector_list.Size(); ++i){
-		if(i%static_cast<int>(vector_list.Size()/10) == 0){
-			std::cout << i << "," << std::flush;
-		}
 		transfered_list.PushBack(
 			Rotate(vector_list(i), GravityPoint(vector_list), theta)
 			+translate_route);
+		indicator(i);
 	}
 	return transfered_list;
 }

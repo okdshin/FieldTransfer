@@ -39,7 +39,12 @@ int main(int argc, char* argv[])
 
 		const auto raw_field = CreateField(width, height, 1.0);
 		const auto transfered_field = 
-			TransferVectorList(raw_field, optimized, translated_route);
+			TransferVectorList(raw_field, optimized, translated_route, 
+			[&raw_field](unsigned int i){
+				if(i%(raw_field.Size()/10) == 0){
+					std::cout << i << "," << std::flush;
+				}
+			});
 		/*
 		for(Index i = 0; i < transfered_field.Size(); ++i){
 			std::cout << transfered_field(i) << std::endl;
