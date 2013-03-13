@@ -12,7 +12,7 @@ namespace field_transfer
 {
 
 template<class Type>
-inline auto Sigma(Index end, std::function<Type(Index)> func) -> Type {
+auto Sigma(Index end, std::function<Type(Index)> func) -> Type {
 	Type sum = func(0);
 	for(Index i = 1; i < end; ++i){
 		sum = sum + func(i);
