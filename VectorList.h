@@ -32,7 +32,7 @@ private:
 	std::vector<Vector> vector_vect;
 };
 
-auto CreateVectorListFromFile(
+inline auto CreateVectorListFromFile(
 		unsigned int x_col_index, unsigned int y_col_index,
 		const std::string& file_name) -> VectorList {
 	std::ifstream ifs(file_name.c_str());

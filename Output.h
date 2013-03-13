@@ -23,7 +23,7 @@ auto OutputFieldInvertedFormat(
 }
 */
 
-auto OutputFieldFormat(
+inline auto OutputFieldFormat(
 		unsigned int width, unsigned int height,
 		const VectorList& raw_vector_list, 
 		const VectorList& normalized_vector_list, 
@@ -45,7 +45,7 @@ auto OutputFieldFormat(
 	}	
 }
 
-auto OutputVectorList(const VectorList& vector_list, std::ostream& os) -> void {
+inline auto OutputVectorList(const VectorList& vector_list, std::ostream& os) -> void {
 	for(unsigned int i = 0; i < vector_list.Size(); ++i){
 		os << vector_list(i);
 	}

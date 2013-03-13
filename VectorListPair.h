@@ -21,7 +21,7 @@ private:
 	VectorList before, after;
 };
 
-auto CreateVectorListPairFromFile(
+inline auto CreateVectorListPairFromFile(
 		unsigned int x_col_index,
 		unsigned int y_col_index,
 		const std::string& before_file_name, 

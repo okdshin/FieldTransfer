@@ -12,7 +12,7 @@ namespace field_transfer
 {
 
 template<class Type>
-auto Sigma(Index end, std::function<Type(Index)> func) -> Type {
+inline auto Sigma(Index end, std::function<Type(Index)> func) -> Type {
 	Type sum = func(0);
 	for(Index i = 1; i < end; ++i){
 		sum = sum + func(i);
@@ -20,18 +20,18 @@ auto Sigma(Index end, std::function<Type(Index)> func) -> Type {
 	return sum;
 }
 
-auto GravityPoint(const VectorList& vector_list) -> Vector {
+inline auto GravityPoint(const VectorList& vector_list) -> Vector {
 	const auto num = vector_list.Size();
 	return (1.0/Number(num))*Sigma<Vector>(num, 
 		[&](Index i) -> Vector { return vector_list(i); });
 }
 
-auto CalcTranslateRoute(const VectorListPair& pair) -> Vector {
+inline auto CalcTranslateRoute(const VectorListPair& pair) -> Vector {
 	return GravityPoint(pair.GetAfterVectorList())
 		- GravityPoint(pair.GetBeforeVectorList());
 }
 
-auto MakeMeMin(Number theta, 
+inline auto MakeMeMin(Number theta, 
 		const VectorListPair& vector_list_pair) -> Number {
 	const auto befores = vector_list_pair.GetBeforeVectorList();
 	const auto afters = vector_list_pair.GetAfterVectorList();
@@ -46,7 +46,7 @@ auto MakeMeMin(Number theta,
 		});
 }
 
-auto TernarySearch(Number min, Number max, Number delta, std::function<Number(Number)> func) -> Number {
+inline auto TernarySearch(Number min, Number max, Number delta, std::function<Number(Number)> func) -> Number {
 	while((max-min) > delta){
 		const auto unit_range = (max-min)/3.0;
 		const auto smaller = min + unit_range;
@@ -61,7 +61,7 @@ auto TernarySearch(Number min, Number max, Number delta, std::function<Number(Nu
 	return (max+min)/2.0;
 }
 
-auto CreateField(Number width, Number height, Number edge_length) -> VectorList {
+inline auto CreateField(Number width, Number height, Number edge_length) -> VectorList {
 	VectorList vector_list;
 	for(Number w = 0.0; w < width; w=w+edge_length){
 		for(Number h = 0.0; h < height; h=h+edge_length){
@@ -71,7 +71,7 @@ auto CreateField(Number width, Number height, Number edge_length) -> VectorList 
 	return vector_list;
 }
 
-auto TransferVectorList(
+inline auto TransferVectorList(
 		const VectorList& vector_list, 
 		Number theta, 
 		const Vector& translate_route,

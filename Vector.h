@@ -21,28 +21,28 @@ private:
 	Number x, y;
 };
 
-auto operator<<(std::ostream& os, const Vector& coord) -> std::ostream& {
+inline auto operator<<(std::ostream& os, const Vector& coord) -> std::ostream& {
 	os << "(" << coord.X() << ", " << coord.Y() << ")";
 	return os;
 }
 
-auto operator+(const Vector& left, const Vector& right) -> Vector {
+inline auto operator+(const Vector& left, const Vector& right) -> Vector {
 	return Vector(left.X()+right.X(), left.Y()+right.Y());
 }
 
-auto operator*(const Number ratio, const Vector& coord) -> Vector {
+inline auto operator*(const Number ratio, const Vector& coord) -> Vector {
 	return Vector(ratio*coord.X(), ratio*coord.Y());
 }
 
-auto operator-(const Vector& left, const Vector& right) -> Vector {
+inline auto operator-(const Vector& left, const Vector& right) -> Vector {
 	return left + (Number(-1.0)*right);
 }
 
-auto InnerProduct(const Vector& left, const Vector& right) -> Number {
+inline auto InnerProduct(const Vector& left, const Vector& right) -> Number {
 	return left.X()*right.X() + left.Y()*right.Y();
 }
 
-auto SquareLength(const Vector& coord) -> Number {
+inline auto SquareLength(const Vector& coord) -> Number {
 	return InnerProduct(coord, coord);
 }
 
