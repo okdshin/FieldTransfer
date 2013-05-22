@@ -39,7 +39,9 @@ inline auto operator*(const Matrix& matrix, const Vector& vector) -> Vector {
 }
 
 inline auto Rotate(const Vector& coord, const Vector& center_coord, Number theta) -> Vector{
-	return center_coord + Matrix({cos(theta), -sin(theta)}, {sin(theta), cos(theta)})*(coord-center_coord);
+	return center_coord + Matrix(
+		Vector(cos(theta), -sin(theta)), 
+		Vector(sin(theta), cos(theta)))*(coord-center_coord);
 }
 
 }

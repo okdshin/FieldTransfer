@@ -78,9 +78,10 @@ inline auto TransferVectorList(
 		std::function<void (unsigned int)> indicator) -> VectorList {
 	auto transfered_list = VectorList();
 	std::cout << "size:" << vector_list.Size() << std::endl;
+	const auto gp = GravityPoint(vector_list);
 	for(Index i = 0; i < vector_list.Size(); ++i){
 		transfered_list.PushBack(
-			Rotate(vector_list(i), GravityPoint(vector_list), theta)
+			Rotate(vector_list(i), gp, theta)
 			+translate_route);
 		indicator(i);
 	}

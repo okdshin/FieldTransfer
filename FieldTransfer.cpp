@@ -3,6 +3,7 @@
 #include "Output.h"
 #include <iostream>
 #include <boost/lexical_cast.hpp>
+#include "Timer/Timer.h"
 
 using namespace field_transfer;
 
@@ -26,13 +27,14 @@ int main(int argc, char* argv[])
 		std::cout << std::endl;
 		const unsigned int width = boost::lexical_cast<unsigned int>(argv[5]);
 		const unsigned int height = boost::lexical_cast<unsigned int>(argv[6]);
+		timer::Timer timer;
 		const auto optimized = TernarySearch(
 			0, 2*M_PI, 
 			2*M_PI/1000, 
 			[&](Number theta)->Number {
 				return MakeMeMin(theta, vector_list_pair);
 			});
-
+		timer::CountTime("TernarySearch", std::cout, timer);
 		const auto translated_route = CalcTranslateRoute(vector_list_pair);
 		std::cout << "TranslateRoute:" << translated_route << std::endl;
 		std::cout << "OptimizedTheta:" << 360.0*(optimized/(2*M_PI)) << std::endl;
@@ -45,6 +47,7 @@ int main(int argc, char* argv[])
 					std::cout << i << "," << std::flush;
 				}
 			});
+		timer::CountTime("TransferField", std::cout, timer);
 		/*
 		for(Index i = 0; i < transfered_field.Size(); ++i){
 			std::cout << transfered_field(i) << std::endl;
@@ -55,6 +58,7 @@ int main(int argc, char* argv[])
 		std::ofstream field_file(argv[7]);
 		//OutputFieldFormat(width, height, raw_field, transfered_field, field_file);
 		OutputFieldFormat(width, height, transfered_field, raw_field, field_file);
+		timer::CountTime("OutputField", std::cout, timer);
 	}
 	catch(const std::string& error){
 		std::cout << "error!:" << error << std::endl;
