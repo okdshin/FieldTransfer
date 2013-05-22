@@ -40,9 +40,15 @@ inline auto MakeMeMin(Number theta,
 	auto afters_gp = GravityPoint(afters);
 	//std::cout << "BeforeGP:" << befores_gp << std::endl;
 	//std::cout << "AfterGP:" << afters_gp << std::endl;
+	/*
 	return Sigma<Number>(size, [&](Index i){
 			return SquareLength(
 				afters(i)-afters_gp - Rotate(befores(i), befores_gp, theta));
+		});
+	*/
+	return Sigma<Number>(size, [&](Index i){
+			return SquareLength(
+				befores(i)-befores_gp - Rotate(afters(i), afters_gp, theta));
 		});
 }
 
